@@ -1,3 +1,5 @@
+import environ
+import os
 from pathlib import Path
 from django.urls import reverse_lazy
 
@@ -5,6 +7,22 @@ from django.urls import reverse_lazy
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# Apartado configuración con variables de entorno
+
+env = environ.Env()
+env_file = os.path.join(os.path.dirname(BASE_DIR), '.env')
+
+env.read_env(env_file=env_file, overwrite=True)
+
+SECRET_KEY_DEFAULT = 'django-insecure-koz-_h*)yt9qcy=c^+2(+&=_q!%jqsx(*gu!$3alh8-r2szpn+'
+
+SECRET_KEY = env("SECRET_KEY", default= SECRET_KEY_DEFAULT)
+
+DEBUG = env.bool('DEBUG', default=True)
+
+ENVIROMENT_RUN = env.bool("ENVIROMENT_RUN", default="local")
+
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=['*'])
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
