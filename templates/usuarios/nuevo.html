@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+<h1>Nuevo usuario</h1>
+
+{% block contenido %}
+
+
+<form method="POST">{% csrf_token %}
+    
+    
+    {{form.erros}}
+    
+    
+
+    {% include 'includes/forms_erros.html'%}
+    {% include 'includes/forms.html'%}
+
+    <hr>
+
+    <button type="submit">Guardar</button>
+    <a href="{% url 'usuarios:lista' %}">Volver</a>
+</form>
+{% endblock contenido %}

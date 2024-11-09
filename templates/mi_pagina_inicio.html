@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+
+{% block contenido %}
+    {% if user.is_authenticated %}
+        <h1>Bienvenido {{ user }}</h1>
+    {% endif %}
+    <h2>Pagina de inicio</h2>
+{% endblock contenido %}
+
+

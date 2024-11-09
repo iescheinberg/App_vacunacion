@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><a href="{% url 'inicio' %}">Ir a Inicio</a></p>
+    <p><a href="{% url 'usuarios:lista' %}">Ir a Lista de Usuarios</a></p>
+    <p><a href="{% url 'lista_de_pacientes' %}">Ir a Lista de Pacientes</a></p>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
+        <p><button type="submit">Cerrar sesion</button></p>
+    </form>
+        
+
+    {% else %}`
+        <p><a href="{% url 'login' %}">Iniciar sesion</a></p>
+    {% endif %}
+
+
+    {% block contenido %}
+    <!-- Aquí va el contenido de la página -->
+    {% endblock contenido %}
+</body>
+</html>
